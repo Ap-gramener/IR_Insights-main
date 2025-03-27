@@ -1173,13 +1173,16 @@ ${audioText}`;
                     }
 
                     const systemPrompt = `You are an AI assistant specialized in sentiment analysis. 
-        Analyze the following earnings call transcripts and separate the statements into positive and negative sentiments.
-        Make sure that the statements must not be any casual line or any instruction or anything else.
-        These statements should have some facts and figures or higlight some crucial points.
-        Also provide the page number inside () from where it is taken. Example (Page - 2).
-        Return the 5 best statements for each category.
-        Format your response in JSON with two keys: "positive" and "negative". 
-        Each key should contain an array of statements.`;
+Analyze the following earnings call transcripts and separate the statements into positive and negative sentiments.
+Make sure that the statements must not be any casual line or any instruction or anything else.
+These statements should have some facts and figures or higlight some crucial points.
+Also provide the page number inside () from where it is taken along with the statement. Example Statement (Page - 2).
+Return the 5 best statements for each category.
+Return the result in json format.
+Return the values in the following format -
+positive: Array having 5 positive statements (eg - [A, B, C, D, E])
+negative: Array having 5 negative statements (eg - [A, B, C, D, E])
+Do not display any other text. Do not put any comment.`;
 
                     const response = await fetch("https://llmfoundry.straive.com/azure/openai/deployments/gpt-4o/chat/completions?api-version=2025-01-01-preview", {
                         method: "POST",
@@ -1200,6 +1203,7 @@ ${audioText}`;
                     const rawData = await response.json();
                     let sentiments;
                     sentiments = rawData.choices[0].message.content;
+                    console.log(sentiments)
                     sentiments = sentiments.replace(/^```json\s*/, '').replace(/\s*```$/, '');
                     sentiments = JSON.parse(sentiments);
 
