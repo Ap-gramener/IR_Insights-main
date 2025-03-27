@@ -82,6 +82,7 @@
       margin-left: 260px;
       /* Adjust for sidebar width */
       padding: 20px;
+      margin-top: 66px;
     }
 
     .tab-content {
@@ -103,6 +104,7 @@
       background-color: #2a3135;
       overflow: hidden;
       display: flex;
+      position: fixed;
       align-items: center;
       padding: 10px 20px;
       top: 0;
@@ -121,6 +123,13 @@
     .logo {
       margin-right: 20px;
       /* Space between logo and links */
+    }
+
+    .active-btn {
+      background-color: #0056b3;
+      /* Darker blue for active state */
+      color: white;
+      /* White text for better contrast */
     }
   </style>
 </head>
@@ -339,6 +348,22 @@
       });
       document.getElementById(tabId).classList.add('active');
     }
+
+    // Initially highlight the first button
+    document.getElementById('showSummary').classList.add('active-btn');
+
+    // Get all buttons in the sidebar
+    const buttons = document.querySelectorAll('.sidebar .btn');
+
+    // Add click event listener to each button
+    buttons.forEach(button => {
+      button.addEventListener('click', function () {
+        // Remove active class from all buttons
+        buttons.forEach(btn => btn.classList.remove('active-btn'));
+        // Add active class to the clicked button
+        this.classList.add('active-btn');
+      });
+    });
 
     let chart = null;
 

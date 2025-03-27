@@ -54,6 +54,14 @@
             /* Optional padding */
             border-left: 0.5px solid #ccc;
             /* Optional border for separation */
+            margin-top: 66px;
+        }
+
+        .qa-center-panel {
+            width: 100%;
+            padding: 10px;
+            padding-bottom: 0px;
+            border-left: 0.5px solid #ccc;
         }
 
         .right-panel {
@@ -258,6 +266,7 @@
             background-color: #2a3135;
             overflow: hidden;
             display: flex;
+            position: fixed;
             align-items: center;
             padding: 10px 20px;
             top: 0;
@@ -276,6 +285,13 @@
         .logo {
             margin-right: 20px;
             /* Space between logo and links */
+        }
+
+        .active-btn {
+            background-color: #0056b3;
+            /* Darker blue for active state */
+            color: white;
+            /* White text for better contrast */
         }
     </style>
 </head>
@@ -405,7 +421,7 @@
                             </div>
 
                             <!-- Center Panel -->
-                            <div class="center-panel">
+                            <div class="qa-center-panel">
                                 <div class="card" id="qa-section">
                                     <div class="card-header" style="text-align: center;">
                                         <h3>Questions & Answers</h3>
@@ -487,6 +503,22 @@
 
                 // Set light theme by default
                 setLightTheme();
+            });
+
+            // Initially highlight the first button
+            document.getElementById('generate-summary-tab').classList.add('active-btn');
+
+            // Get all buttons in the sidebar
+            const buttons = document.querySelectorAll('.sidebar .btn');
+
+            // Add click event listener to each button
+            buttons.forEach(button => {
+                button.addEventListener('click', function () {
+                    // Remove active class from all buttons
+                    buttons.forEach(btn => btn.classList.remove('active-btn'));
+                    // Add active class to the clicked button
+                    this.classList.add('active-btn');
+                });
             });
 
             // Handle Tab Switching

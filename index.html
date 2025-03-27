@@ -24,11 +24,15 @@
 
     .navbar {
       background-color: #333;
+      width: 100%;
       /* Dark background */
       overflow: hidden;
       display: flex;
+      position: fixed;
       align-items: center;
+      top: 0;
       padding: 10px 20px;
+      z-index: 1000;
     }
 
     .navbar a {
@@ -70,7 +74,7 @@
     /* Prevent unwanted margin changes */
     .container-fluid {
       padding: 0 15px !important;
-      margin: 0 auto !important;
+      margin-top: 66px;
     }
 
     #summary-container .card {
@@ -81,49 +85,6 @@
     .card-header {
       background-color: var(--bs-card-cap-bg);
       padding: 1rem 1.25rem;
-    }
-
-    /* Maintain consistent text weights */
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      font-weight: inherit;
-    }
-
-    .fw-bold {
-      font-weight: bold !important;
-    }
-
-    h1.main-title.display-1 {
-      font-size: 3rem !important;
-      font-weight: normal !important;
-      margin: 1.5rem 0 !important;
-    }
-
-    .custom-scrollbar {
-      scrollbar-width: thin;
-      scrollbar-color: rgba(0, 0, 0, 0.3) transparent;
-    }
-
-    .custom-scrollbar::-webkit-scrollbar {
-      width: 8px;
-    }
-
-    .custom-scrollbar::-webkit-scrollbar-track {
-      background: transparent;
-    }
-
-    .custom-scrollbar::-webkit-scrollbar-thumb {
-      background-color: rgba(0, 0, 0, 0.3);
-      border-radius: 4px;
-      border: 2px solid transparent;
-    }
-
-    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-      background-color: rgba(0, 0, 0, 0.5);
     }
 
     .feature-card {
@@ -152,7 +113,6 @@
 
 <body>
   <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
-    <!-- <div class="container-fluid"> -->
     <a class="navbar-brand" href=".">
       <img src="https://www.google.com/u/0/ac/images/logo.gif?uid=108567007302598457471&service=google_gsuite"
         width="72px" height="36px" alt="Straive Logo" class="logo">
